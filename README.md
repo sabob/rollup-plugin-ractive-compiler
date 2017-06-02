@@ -56,8 +56,4 @@ That way our HTML View can be managed in it's own separate *.html* file with syn
 What if we want to *import* text/html files that aren't Ractive templates?
 
 In that case we can use [https://github.com/TrySound/rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string).
-
-
-
-
-
+TEST
