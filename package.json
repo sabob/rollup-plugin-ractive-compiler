@@ -1,0 +1,34 @@
+{
+  "name": "rollup-plugin-ractive-compiler",
+  "description": "Compile Ractive components",
+  "version": "0.0.1",
+  "author": "Rich Harris",
+  "repository": "rollup/rollup-plugin-ractive-compiler",
+  "license": "MIT",
+  "main": "dist/rollup-plugin-ractive-compiler.cjs.js",
+  "module": "dist/rollup-plugin-ractive-compiler.es.js",
+    
+  "scripts": {
+    "build": "rollup -c",
+    "test": "mocha --compilers js:buble/register test/test.js",
+    "pretest": "npm run build",
+    "prepublish": "npm run lint && npm test",
+    "lint": "eslint src"
+  },
+  
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "devDependencies": {
+    "buble": "^0.15.2",
+    "eslint": "^3.19.0",
+    "mocha": "^3.4.2",
+    "ractive": "^0.9.0",
+    "rollup": "^0.41.6",
+    "rollup-plugin-buble": "^0.15.0"
+  },
+  "dependencies": {
+    "rollup-pluginutils": "^2.0.1"
+  }
+}
