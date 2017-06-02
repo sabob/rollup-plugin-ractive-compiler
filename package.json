@@ -3,7 +3,7 @@
   "description": "Compile Ractive components",
   "version": "0.0.1",
   "author": "Rich Harris",
-  "repository": "rollup/rollup-plugin-ractive-compiler",
+  "repository": "sabob/rollup-plugin-ractive-compiler",
   "license": "MIT",
   "main": "dist/rollup-plugin-ractive-compiler.cjs.js",
   "module": "dist/rollup-plugin-ractive-compiler.es.js",
