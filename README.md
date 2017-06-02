@@ -1,6 +1,6 @@
 # rollup-plugin-ractive-templates
 
-A Rollup plugin to import text files and optionally compile Ractive templates.
+A Rollup plugin to *import* and *compile* Ractive etemplates.
 
 ## Problem
 The ES6 module standard only allows importing Javascript modules. So if we want to import *text* or *html* we are out of luck.
@@ -50,6 +50,14 @@ import view from "./view.html";
 That way our HTML View can be managed in it's own separate *.html* file with syntax highlighting provided by the editor.
 
 ## Solution
+
+## Non-Ractive text files
+
+What if we want to *import* text/html files that aren't Ractive templates?
+
+In that case we can use [https://github.com/TrySound/rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string).
+
+
 
 
 
