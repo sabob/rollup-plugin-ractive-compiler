@@ -4,7 +4,7 @@ export default {
 	entry: 'src/index.js',
 	plugins: [ buble() ],
 	targets: [
-		{ dest: 'dist/rollup-plugin-ractive-compile.cjs.js', format: 'cjs' },
-		{ dest: 'dist/rollup-plugin-ractive-compile.es.js', format: 'es' }
+		{ dest: 'dist/rollup-plugin-ractive-compiler.cjs.js', format: 'cjs' },
+		{ dest: 'dist/rollup-plugin-ractive-compiler.es.js', format: 'es' }
 	]
 };
