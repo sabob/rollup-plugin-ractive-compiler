@@ -32,11 +32,11 @@ describe( 'rollup-plugin-ractive-compiler', () => {
 
 		} ).then( executeBundle );
 	} ),
-			it.only( 'include a template only { compile: false }', () => {
+			it.only( 'include an uncompiled template { compile: false }', () => {
 
 				return rollup( {
 
-					entry: 'samples/template/view.js',
+					entry: 'samples/uncompiled/view.js',
 
 					plugins: [ ractiveCompiler( {
 							compile: false,
