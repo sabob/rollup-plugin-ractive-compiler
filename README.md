@@ -31,7 +31,7 @@ rollup({
 });
 ```
 
-* [minimatch](https://www.npmjs.com/package/minimatch).
+&ast; [minimatch](https://www.npmjs.com/package/minimatch)
 
 In the example above, we use the *include* property to indicate which files are handled as Ractive templates.
 
