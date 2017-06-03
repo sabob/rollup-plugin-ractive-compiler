@@ -2,6 +2,50 @@
 
 A Rollup plugin to *import* and *compile* Ractive etemplates.
 
+## Installation
+``` 
+npm i rollup-plugin-ractive-compiler --save-dev
+```
+
+## Usage
+
+```js
+import { rollup } from 'rollup';
+import ractiveCompiler from 'rollup-plugin-ractive-compiler';
+
+rollup({
+  entry: 'app.js',
+  plugins: [
+    ractiveCompiler({
+    
+    // compile is true by default
+     compile: false,
+
+      // include is required to be specified, can be a minimatch pattern or an array of minimatch patterns
+      include: '**/*.html',
+
+      // Exclude is optional. Can a minimatch pattern or an array of minimatch patterns
+      exclude: '**/*.text.html'
+    })
+  ]
+});
+```
+
+* [minimatch](https://www.npmjs.com/package/minimatch).
+
+In the example above, we use the *include* property to indicate which files are handled as Ractive templates.
+
+**&ast;&ast;/&ast;.html** says all *html* files will be loaded and compiled into Ractive templates.
+
+We can also use the *exclude* property to exclude certain files:
+
+**&ast;&ast;/&ast;.text.html** says all files with the path *.text.* in them, will be excluded eg. *some.text.html' won't be loaded or compiled by this plugin.
+
+
+     // Here we use a naming convention to exclude '.html' templates with '.text' in their names
+      // eg. 'someHtml.text.html' will be excluded
+```
+
 ## Problem
 The ES6 module standard only allows importing Javascript modules. So if we want to import *text* or *html* we are out of luck.
 
