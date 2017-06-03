@@ -8,32 +8,33 @@ npm i rollup-plugin-ractive-compiler --save-dev
 ```
 
 ## Usage
+
 ```js
 let rollup = require( 'rollup' );
 let ractiveCompiler = require( 'rollup-plugin-ractive-compiler' );
 
 rollup({
 	entry: 'app.js',
-	
+
 	plugins: [
-	
+
 		ractiveCompiler({
 
-			// compile is true by default
+            // compile is true by default
 			compile: true,
-     
-     		// default extensions are .html and .htm
+
+			// default extensions are .html and .htm
 			extensions: [ '.html', '.htm' ],
 
-      		// include is required to be specified, can be a minimatch pattern or an array of 
+			// include is required to be specified, can be a minimatch pattern or an array of 
 			// minimatch patterns, relative to process.cwd()
-      		include: '**/*.html'
+			include: '**/*.html'
 
-      		// Exclude is optional. Can be a minimatch pattern or an array of minimatch patterns, 
+			// Exclude is optional. Can be a minimatch pattern or an array of minimatch patterns, 
 			// relative to process.cwd()
-      		exclude: '**/*.text.html'
-    	})
-  	]
+			exclude: '**/*.text.html'
+		})
+	]
 });
 ```
 
