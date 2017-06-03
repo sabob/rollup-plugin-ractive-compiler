@@ -19,7 +19,7 @@ function ractiveCompiler ( options ) {
 	let obj = {
 		name: 'ractive-compiler',
 
-		compile: options.compile,
+		compile: options.compile == null ? true : options.compile,
 
 		transform: function transform ( code, id ) {
 			if ( !filter( id ) ) { return null; }
