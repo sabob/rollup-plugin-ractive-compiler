@@ -1,13 +1,22 @@
 # rollup-plugin-ractive-templates
 
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Why do we need this plugin?](#problem)
+- [What should this plugin accomplish?](#goal)
+- [How do we get there?](#solution)
+- [Example](#example)
+
+
 A Rollup plugin to *import* and *compile* Ractive templates.
 
-## Installation
-``` 
+## <a id="installation"></a>Installation
+```
 npm i rollup-plugin-ractive-compiler --save-dev
 ```
 
-## Usage
+## <a id="usage"></a>Usage
 
 ```js
 let rollup = require( 'rollup' );
@@ -26,11 +35,11 @@ rollup({
             // default extensions are .html and .htm
             extensions: [ '.html', '.htm' ],
 
-            // include is required to be specified, can be a minimatch pattern or an array of 
+            // include is required to be specified, can be a minimatch pattern or an array of
             // minimatch patterns, relative to process.cwd()
             include: '**/*.html'
 
-            // Exclude is optional. Can be a minimatch pattern or an array of minimatch patterns, 
+            // Exclude is optional. Can be a minimatch pattern or an array of minimatch patterns,
             // relative to process.cwd()
             exclude: '**/*.text.html'
         })
@@ -61,7 +70,7 @@ let view = new Ractive({
 });
 ```
 
-## Why do we need this plugin?
+## <a id="problem"></a>Why do we need this plugin?
 The ES6 modules (as far as I now) does not allow importing text files as modules. So if we want to import plain *html* or *json* we are out of luck.
 
 For example, when using a Model/View/Controller pattern we can import the Controller and Model because they themselves can be Javascript modules:
@@ -82,9 +91,9 @@ import view from "./view.html";
 
 But ES6 Modules doesn't allow us (at least yet) to import text.
 
-A second issue we face is when a [Ractive](https://ractive.js.org) instance is created the template is compiled into a format that Ractive can understand. Compiling the template has some overhead so in *production* environments we want to *precompile* our templates. so that Ractive doesn't have to do it at runtime. 
+A second issue we face is when a [Ractive](https://ractive.js.org) instance is created the template is compiled into a format that Ractive can understand. Compiling the template has some overhead so in *production* environments we want to *precompile* our templates. so that Ractive doesn't have to do it at runtime.
 
-## Goal
+## <a id="goal"></a>Goal
 
 We want to import our html templates just as easily as Javascript modules.
 
@@ -108,7 +117,7 @@ Now our HTML View can be managed in it's own separate *.html* file with syntax h
 
 We also want an option to [precompile](https://ractive.js.org/api/parse/) our templates for production use.
 
-## Solution
+## <a id="solution"></a>Solution
 This [Rollup](https://rollupjs.org/) plugin allows us to both *import* and *compile* Ractive templates.
 
 By default this plugin will compile the Ractive templates, but it is possible to disable compiling during *development*.
@@ -117,10 +126,10 @@ The following options are supported:
 
 ```js
 ractiveCompiler({
-    
+
     // compile is true by default
     compile: true,
-     
+
     // default extensions are .html and .htm
     extensions: [ '.html', '.htm' ],
 
@@ -136,7 +145,7 @@ ractiveCompiler({
 })
 ```
 
-The *include* and *exclude* properties allow [minimatch](https://www.npmjs.com/package/minimatch) patterns or array of minimatch patterns to finely control which templates should be processed by this plugin. 
+The *include* and *exclude* properties allow [minimatch](https://www.npmjs.com/package/minimatch) patterns or array of minimatch patterns to finely control which templates should be processed by this plugin.
 
 The **extensions** property specifies an array of file extensions to further control which files are processed.
 
@@ -149,7 +158,7 @@ import someData from 'templates/data.json';
 
 In this case we can use another Rollup plugin: [https://github.com/TrySound/rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string).
 
-## Example
+## <a id="example"></a>Example
 
 Here is an example showing how to import and compile ractive templates as well as iporting non-ractive html/text or json files.
 
@@ -161,12 +170,12 @@ var stringToModule = require( 'rollup-plugin-string' );
 rollup({
 
     entry: 'app.js',
-	
+
     plugins: [
-  
+
         // Setup ractive compiler plugin
         ractiveCompiler({
-    
+
             // compile is true by default
             compile: false,
 
@@ -188,7 +197,7 @@ rollup({
 
 In the example above, we use the *ractiveCompiler*' *include* property to indicate which files are handled as Ractive templates.
 
-include: **&ast;&ast;/&ast;.html** says include all *html* files in all folders to be loaded and compiled into Ractive templates. *include* can also accept an array of values: 
+include: **&ast;&ast;/&ast;.html** says include all *html* files in all folders to be loaded and compiled into Ractive templates. *include* can also accept an array of values:
 
 ```js
 ['**/templates/*.html', '**/views/*.html']
@@ -200,7 +209,7 @@ We can also specify the *exclude* property to exclude certain files:
 
 exclude: **&ast;&ast;/&ast;.text.html** says all files with the string **.text.** in them, will be excluded eg. ```some.text.html``` won't be compiled by this plugin.
 
-Next we configure the **rollup-plugin-string** to *include* files containing the string **.text.** in their names as well as **.json** files. 
+Next we configure the **rollup-plugin-string** to *include* files containing the string **.text.** in their names as well as **.json** files.
 
 With this setup in place we can *import* both ractive and non-ractive templates and data files.
 
@@ -210,7 +219,7 @@ import plainText from './plain.text.html';
 import someJson from './some.json';
 ```
 
-To differentiate between ractive and on-ractive templates we can also use a naming convention based on file extensions. 
+To differentiate between ractive and on-ractive templates we can also use a naming convention based on file extensions.
 
 We can specify Ractive templates as having the extension **.htm** and non-ractive templates with extension **.html**. Most editors handle both *.htm* and *.html* extensions as HTML so syntax highlighting will be applied to both files.
 
@@ -224,17 +233,17 @@ var stringToModule = require( 'rollup-plugin-string' );
 rollup({
 
     entry: 'app.js',
-    
+
     plugins: [
-  
+
         ractiveCompiler({
             // we specify .htm extension for racitive templates
             include: '**/*.htm',
-			
+
             // default extensions are .html and .htm, so we don't need to specify anything here
             // extensions: [ '.html', '.htm' ]
         }),
-    
+
         stringToModule({
             // we specify .html extension as html files (non ractive templates)
             include: '**/*.html'
@@ -248,7 +257,7 @@ If we want to use an alternative extension for our ractive templates ie. **'.rac
 ```js
 ractiveCompiler({
     include: '**/*.ract',
-		
+
     // default extensions are .html and .htm
     // here we specify a different set of extensions
     extensions: [ '.html', '.ract' ]
