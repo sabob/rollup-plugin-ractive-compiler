@@ -9,6 +9,7 @@
   "module": "dist/rollup-plugin-ractive-compiler.es.js",
     
   "scripts": {
+    "dist": "rollup -c",
     "build": "rollup -c",
     "test": "mocha --compilers js:buble/register test/test.js",
     "pretest": "npm run build",
@@ -18,7 +19,9 @@
   
   "files": [
     "dist",
-    "README.md"
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "devDependencies": {
     "buble": "^0.15.2",
